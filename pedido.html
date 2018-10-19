@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md">
+        <div class="container-fluid"><a class="navbar-brand" href="#">FEEDER</a><button class="navbar-toggler"
+                data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                    class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Menu 1</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Menu 2</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Menu 3</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div ng-app = "pedidoApp" ng-controller = "pedidoController">
+        <div class="container">
+            <div class="row">
+                <div class="col col-md-8">
+                    <div>
+                        <div class="dropdown" style="padding-bottom:20px;"><button class="btn btn-primary dropdown-toggle btn btn-dark"
+                                data-toggle="dropdown" aria-expanded="false" type="button">Categorias&nbsp;</button>
+                            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">Sucos</a><a
+                                    class="dropdown-item" role="presentation" href="#">Pastéis</a><a class="dropdown-item"
+                                    role="presentation" href="#">Empadas</a></div>
+                        </div>
+                    </div>
+                    <div>
+                        <h1>Cardápio</h1>
+                        <div class="border-bottom"></div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Preço</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat = "lista in pedido.lista">
+                                    <td>{{ lista.nome }}</td>
+                                    <td>{{ lista.preco }}</td>
+                                    <td><input type="checkbox" aria-label="Selecionar o produto" ng-change="addProduto(lista)" ng-model="checkout">
+                                    
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col" style="padding-top:58px;">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row"><i class="fa fa-cart-arrow-down col-md-3" style="font-size:36px;padding-top:5px;"></i>
+                                <h1>Seu Pedido</h1>
+                            </div>
+                            <div class="table-responsive table-borderless">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Produto</th>
+                                            <th>Preço</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat = "lista in pedido.checkout">
+                                            <td>{{ lista.nome }}</td>
+                                            <td>{{ lista.preco }}</td>
+                                            <td><input type="number" ng-model="qtd" ></td>
+                                            <td>{{qtd*lista.preco}}</td>
+                                        </tr>
+                                        <tr></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="d-flex justify-content-center mt-auto" id="valor-color">
+                                <div class="flex-fill">
+                                    <h4>Valor &nbsp;<span class="badge badge-success">R$ {{pedido.total}}</span></h4>
+                                </div>
+                                <div><button class="btn btn-primary btn-success" type="button" id="botao-pagar">Pagar</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.4/angular.min.js"></script>
+    <script src="assets/js/pedido.js"></script>
+</body>
+
+</html>
