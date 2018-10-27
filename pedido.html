@@ -53,8 +53,8 @@
                                 <tr ng-repeat = "lista in pedido.lista">
                                     <td>{{ lista.nome }}</td>
                                     <td>{{ lista.preco }}</td>
-                                    <td><input type="checkbox" aria-label="Selecionar o produto" ng-checked="lista.check" ng-click="addProduto(lista)" ng-model="checkout">
-                                    
+                                    <td>
+                                    <button type="button" class="btn btn-primary" ng-click="addProduto(lista)" {{ lista.disabled ? 'disabled' : '' }} ng-disabled="{{lista.disabled}}" ng-model="checkout" >CARRINHO</button>
                                     </td>
                                 </tr>
                             </tbody>

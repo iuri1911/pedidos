@@ -4,14 +4,14 @@ var mainApp = angular.module("pedidoApp", []);
             $scope.pedido = {               
                
                 lista:[
-                  {nome:'Laranja',preco:5,checked:false},
-                  {nome:'Cacau',preco:6,checked:false},
-                  {nome:'merda',preco:7,checked:false},
-                  {nome:'merda',preco:7,checked:false},
-                  {nome:'merda',preco:7,checked:false},
-                  {nome:'merda',preco:7,checked:false},
-                  {nome:'merda',preco:7,checked:false},
-                  {nome:'merda',preco:7,checked:false},  
+                  {nome:'Laranja',preco:5,disabled:false},
+                  {nome:'Cacau',preco:6,disabled:false},
+                  {nome:'merda',preco:7,disabled:false},
+                  {nome:'merda',preco:7,disabled:false},
+                  {nome:'merda',preco:7,disabled:false},
+                  {nome:'merda',preco:7,disabled:false},
+                  {nome:'merda',preco:7,disabled:false},
+                  {nome:'merda',preco:7,disabled:false},  
                ],
                checkout:[
                 {nome:'Laranja',preco:5}
@@ -20,20 +20,14 @@ var mainApp = angular.module("pedidoApp", []);
             };
 
             $scope.addProduto = (produto) => {
-              angular.forEach(produto, function(item){
-                if (item.checked)
-                {
-                  console.log(item);
-                    $scope.pedido.lista[item.id] = item.checked;
-                }
-              });
-              console.log($scope.pedido.lista);
 
-              //$scope.pedido.total += produto.preco;
-              //$scope.pedido.checkout.push(produto);
+              $scope.pedido.total += produto.preco;
+              $scope.pedido.checkout.push(produto);
+              $scope.pedido.lista.forEach(function(el) {
+                el.disabled = true;
+              });
             }
             $scope.removProduto = (produto) => {
               $scope.pedido.total -= produto.preco;
-              // $scope.pedido.checkout.push(produto);
             }
          });
