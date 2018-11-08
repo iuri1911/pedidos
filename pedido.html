@@ -54,7 +54,7 @@
                                     <td>{{ lista.nome }}</td>
                                     <td>{{ lista.preco }}</td>
                                     <td>
-                                    <button type="button" class="btn btn-primary" ng-click="addProduto(lista)" {{ lista.disabled ? 'disabled' : '' }} ng-disabled="{{lista.disabled}}" ng-model="checkout" >CARRINHO</button>
+                                    <button type="button" class="btn btn-primary" ng-click="lista.desab = true; addProduto(lista)" ng-disabled="lista.desab" ng-model="checkout" >CARRINHO</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -79,8 +79,8 @@
                                         <tr ng-repeat = "lista in pedido.checkout">
                                             <td>{{ lista.nome }}</td>
                                             <td>{{ lista.preco }}</td>
-                                            <td><input type="number" ng-model="qtd" ></td>
-                                            <td>{{qtd*lista.preco}}</td>
+                                            <td><input type="number" ng-model="lista.qtd" ng-blur="updateTotal(lista.qtd*lista.preco)"></td>
+                                            <td>{{pedido.total}}</td>
                                         </tr>
                                         <tr></tr>
                                     </tbody>
